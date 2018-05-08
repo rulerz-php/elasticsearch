@@ -16,7 +16,7 @@
 
         "kphoen/rulerz": "dev-master as 0.30.0",
 
-        "elasticsearch/elasticsearch": "~1.0"
+        "elasticsearch/elasticsearch": "^6.0"
     },
     "require-dev": {
         "liip/rmt": "^1.2",

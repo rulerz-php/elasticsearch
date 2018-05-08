@@ -32,32 +32,27 @@ trait FilterTrait
         $searchQuery = $this->execute($target, $operators, $parameters);
 
         /** @var \Elasticsearch\Client $target */
-        $response = $target->search([
+        $results = $target->search([
             'index' => $context['index'],
             'type' => $context['type'],
-            'search_type' => 'scan',
             'scroll' => $context->get('scroll_duration', self::$DEFAULT_SCROLL_DURATION),
             'size' => $context->get('chunks_size', self::$DEFAULT_CHUNK_SIZE),
             'body' => ['query' => $searchQuery],
         ]);
 
-        $scrollId = $response['_scroll_id'];
-
         while (true) {
-            $results = $target->scroll([
-                'scroll_id' => $scrollId,
-                'scroll' => $context->get('scroll_duration', self::$DEFAULT_SCROLL_DURATION),
-            ]);
-
             if (empty($results['hits']['hits'])) {
                 break;
             }
 
-            $scrollId = $results['_scroll_id'];
-
             foreach ($results['hits']['hits'] as $result) {
-                yield  $result['_source'];
+                yield $result['_source'];
             }
+
+            $results = $target->scroll([
+                'scroll_id' => $scrollId = $results['_scroll_id'],
+                'scroll' => $context->get('scroll_duration', self::$DEFAULT_SCROLL_DURATION),
+            ]);
         }
     }
 }

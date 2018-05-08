@@ -1,6 +1,6 @@
 language: php
 
-sudo: required
+sudo: false
 
 cache:
     directories:
@@ -10,6 +10,9 @@ branches:
     only:
         - master
 
+services:
+    - elasticsearch
+
 php:
     - 7.1
     - 7.2
@@ -18,10 +21,6 @@ matrix:
     fast_finish: true
 
 before_install:
-    # setup elasticsearch
-    - sudo dpkg -r elasticsearch
-    - curl -O https://download.elastic.co/elasticsearch/release/org/elasticsearch/distribution/deb/elasticsearch/2.3.0/elasticsearch-2.3.0.deb && sudo dpkg -i --force-confnew elasticsearch-2.3.0.deb && sudo service elasticsearch restart
-
     - phpenv config-rm xdebug.ini || true
 
 install:

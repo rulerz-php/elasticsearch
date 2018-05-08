@@ -28,9 +28,7 @@ class Context implements BehatContext
 
     public function __construct()
     {
-        $this->client = new Elasticsearch\Client([
-            'hosts' => ['localhost:9200'],
-        ]);
+        $this->client = \Elasticsearch\ClientBuilder::create()->build();
     }
 
     /**

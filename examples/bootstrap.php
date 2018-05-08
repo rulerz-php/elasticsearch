@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-$client = new Elasticsearch\Client([
-    'hosts' => ['localhost:9200'],
-]);
+$client = \Elasticsearch\ClientBuilder::create()->build();
 
 // compiler
 $compiler = \RulerZ\Compiler\Compiler::create();

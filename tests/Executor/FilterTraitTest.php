@@ -49,11 +49,18 @@ class FilterTraitTest extends TestCase
         $target->method('search')->with([
             'index' => 'es_index',
             'type' => 'es_type',
-            'search_type' => 'scan',
             'scroll' => '30s',
             'size' => 50,
             'body' => ['query' => $esQuery],
-        ])->willReturn($result);
+        ])->willReturn([
+            '_scroll_id' => 'some-scroll-id',
+            'hits' => [
+                'total' => 1,
+                'hits' => [
+                    ['_source' => 'first document'],
+                ],
+            ],
+        ]);
 
         $target->method('scroll')->with([
             'scroll_id' => 'some-scroll-id',
@@ -63,7 +70,6 @@ class FilterTraitTest extends TestCase
             'hits' => [
                 'total' => 1,
                 'hits' => [
-                    ['_source' => 'first document'],
                     ['_source' => 'other document'],
                 ],
             ],
