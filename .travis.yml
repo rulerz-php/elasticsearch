@@ -28,5 +28,6 @@ install:
 
 script:
     - make database
+    - sleep 10
     - make tests
     - make rusty
