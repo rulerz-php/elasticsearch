@@ -1,0 +1,37 @@
+{
+    "name": "rulerz-php/elasticsearch",
+    "description": "Elasticsearch compilation target for RulerZ",
+    "keywords": ["rulerz", "specification", "rule", "engine", "eelasticsearch"],
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Kévin Gomez",
+            "email": "contact@kevingomez.fr",
+            "homepage": "http://www.kevingomez.fr/"
+        }
+    ],
+    "require": {
+        "php": ">=7.1",
+
+        "kphoen/rulerz": "dev-master as 0.30.0",
+
+        "elasticsearch/elasticsearch": "~1.0"
+    },
+    "require-dev": {
+        "liip/rmt": "^1.2",
+
+        "behat/behat": "~3.0",
+
+        "phpunit/phpunit": "^7.1",
+        "kphoen/rusty": "dev-master"
+    },
+    "autoload": {
+        "psr-4": { "RulerZ\\Elasticsearch\\": "src/" }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\RulerZ\\": "tests/"
+        }
+    }
+}

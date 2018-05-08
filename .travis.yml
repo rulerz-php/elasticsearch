@@ -1,0 +1,32 @@
+language: php
+
+sudo: false
+
+cache:
+    directories:
+        - $HOME/.composer/cache
+
+branches:
+    only:
+        - master
+
+php:
+    - 7.1
+    - 7.2
+
+matrix:
+    fast_finish: true
+
+before_install:
+    # setup elasticsearch
+    - curl -O https://download.elastic.co/elasticsearch/release/org/elasticsearch/distribution/deb/elasticsearch/2.3.0/elasticsearch-2.3.0.deb && sudo dpkg -i --force-confnew elasticsearch-2.3.0.deb && sudo service elasticsearch restart
+
+    - phpenv config-rm xdebug.ini || true
+
+install:
+    - composer install --optimize-autoloader --no-interaction
+
+script:
+    - make database
+    - make tests
+    - make rusty
