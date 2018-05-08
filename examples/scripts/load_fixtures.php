@@ -1,9 +1,9 @@
 <?php
 
 /** @var \Elasticsearch\Client $client */
-list($rulerz, $client) = require_once __DIR__ . '/../bootstrap.php';
+list($rulerz, $client) = require_once __DIR__.'/../bootstrap.php';
 
-$fixtures = json_decode(file_get_contents(__DIR__ . '/../../vendor/kphoen/rulerz/examples/fixtures.json'), true);
+$fixtures = json_decode(file_get_contents(__DIR__.'/../../vendor/kphoen/rulerz/examples/fixtures.json'), true);
 
 echo sprintf("\e[32mLoading fixtures for %d players\e[0m", count($fixtures['players']));
 

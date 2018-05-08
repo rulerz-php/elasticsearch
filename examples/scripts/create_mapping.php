@@ -1,7 +1,7 @@
 <?php
 
 /** @var \Elasticsearch\Client $client */
-list($rulerz, $client) = require_once __DIR__ . '/../bootstrap.php';
+list($rulerz, $client) = require_once __DIR__.'/../bootstrap.php';
 
 echo "\e[32mDeleting index 'rulerz_tests'\e[0m\n";
 
@@ -25,8 +25,8 @@ $client->indices()->create([
                     'gender' => [
                         'type' => 'keyword',
                     ],
-                ]
-            ]
-        ]
+                ],
+            ],
+        ],
     ],
 ]);
