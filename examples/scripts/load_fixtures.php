@@ -5,6 +5,8 @@ list($rulerz, $client) = require_once __DIR__ . '/../bootstrap.php';
 
 $fixtures = json_decode(file_get_contents(__DIR__ . '/../../vendor/kphoen/rulerz/examples/fixtures.json'), true);
 
+echo sprintf("\e[32mLoading fixtures for %d players\e[0m", count($fixtures['players']));
+
 foreach ($fixtures['players'] as $player) {
     $params = [
         'body' => [

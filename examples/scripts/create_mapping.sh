@@ -14,3 +14,5 @@ curl -X POST http://localhost:9200/rulerz_tests -d '{
     }
   }
 }'
+
+echo ""
