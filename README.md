@@ -14,7 +14,7 @@ for Elasticsearch and RulerZ.
 
 Here is a summary of what you will have to do:
 
- * [configure Eloquent](#configure-eloquent);
+ * [configure elastic/elasticsearch-php](#configure-elasticelasticsearch-php);
  * [configure RulerZ](#configure-rulerz);
  * [filter your target](#filter-your-target).
 
@@ -26,7 +26,7 @@ or use a bundle/module/whatever the framework you're using promotes.
 
 ### Configure RulerZ
 
-Once Eloquent is installed and configured we can the RulerZ engine:
+Once elastic/elasticelasticsearch-php is installed and configured we can the RulerZ engine:
 
 ```php
 $rulerz = new RulerZ(
