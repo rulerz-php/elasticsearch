@@ -14,7 +14,7 @@ use RulerZ\Model\Executor;
 use RulerZ\Model\Rule;
 use RulerZ\Parser\Parser;
 
-class ELasticsearchTest extends TestCase
+class ElasticsearchTest extends TestCase
 {
     private $target;
 

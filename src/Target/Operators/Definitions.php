@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 namespace RulerZ\Elasticsearch\Target\Operators;
+
 use RulerZ\Target\Operators\Definitions as RulerzDefinitions;
 
 class Definitions
