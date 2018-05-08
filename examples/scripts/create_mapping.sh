@@ -1,5 +1,9 @@
+#!/bin/sh
+
+echo "\e[32mDeleting 'rulerz_tests'\e[0m"
 curl -X DELETE http://localhost:9200/rulerz_tests
 
+echo "\n\e[32mCreating mapping for 'rulerz_tests'\e[0m"
 curl -X POST http://localhost:9200/rulerz_tests -d '{
   "mappings": {
     "player": {
