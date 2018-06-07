@@ -109,6 +109,45 @@ QUERY;
         $this->assertSame($expectedQuery, $executorModel->getCompiledRule());
     }
 
+    public function testItSupportsInlineOperators()
+    {
+        $rule = 'points > 30 and name matches "foo"';
+        $expectedQuery = <<<'QUERY'
+[
+    'bool' => ['must' => [[
+    'bool' => ['must' => [
+                'range' => [
+                    'points' => ['gt' => 30],
+                ]
+            ]]
+], [
+                'bool' => ['must' => [
+                    'match' => [
+                        'name' => 'foo',
+                    ]
+                ]]
+            ]]]
+]
+QUERY;
+
+        $this->target->defineInlineOperator('matches', function ($a, $b) {
+            $value = is_array($b) ? implode(' ', $b) : $b;
+
+            return "[
+                'bool' => ['must' => [
+                    'match' => [
+                        '$a' => $value,
+                    ]
+                ]]
+            ]";
+        });
+
+        /** @var Executor $executorModel */
+        $executorModel = $this->target->compile($this->parseRule($rule), new Context());
+
+        $this->assertSame($expectedQuery, $executorModel->getCompiledRule());
+    }
+
     public function testItHandlesNestedAccesses()
     {
         $rule = 'user.stats.points > 30';
