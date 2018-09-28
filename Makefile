@@ -16,7 +16,7 @@ rusty:
 	php ./vendor/bin/rusty check --no-execute README.md
 
 elasticsearch_start:
-	docker run -d -p 9200:9200 --name es-rulerz docker.elastic.co/elasticsearch/elasticsearch:6.2.4
+	docker run -d -p 9200:9200 -e "discovery.type=single-node" --name es-rulerz docker.elastic.co/elasticsearch/elasticsearch:6.4.1
 
 elasticsearch_stop:
 	docker rm -f es-rulerz
