@@ -14,7 +14,7 @@ $compiler = \RulerZ\Compiler\Compiler::create();
 // RulerZ engine
 $rulerz = new \RulerZ\RulerZ(
     $compiler, [
-        new \RulerZ\Target\Elasticsearch\Elasticsearch(),
+        new \RulerZ\Elasticsearch\Target\Elasticsearch(),
     ]
 );
 
